@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Update profile{% endblock title%}
+
+{% block content %}
+
+<h1>Update your account</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>
+            <img class="rounded-circle account-img" src="{{user.profile.avatar.url}}"
+             width="50" height="50">{{ user.username }}
+        </h2>
+        {{ u_form|crispy }}
+        {{ p_form|crispy }}
+        <p>
+            <input type="submit" value="Update">
+        </p>
+    </form>
+
+    <h2>Do you wish to update your password?</h2>
+    <p><a href="{% url 'password_change' %}">update password</a></p>
+    
+
+{%endblock content%} 
